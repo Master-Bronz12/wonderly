@@ -1,0 +1,18 @@
+services:
+  - type: web
+    name: wonderly
+    env: php
+    buildCommand: echo "No build needed"
+    startCommand: php -S 0.0.0.0:$PORT -t .
+    plan: free
+    envVars:
+      - key: RENDER
+        value: true
+      - key: DB_HOST
+        value: your-db-host
+      - key: DB_NAME
+        value: wonderly
+      - key: DB_USER
+        value: your-db-user
+      - key: DB_PASS
+        value: your-db-password

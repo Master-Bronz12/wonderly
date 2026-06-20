@@ -1,12 +1,24 @@
 ﻿<?php
 // ============================================
-// CONFIGURATION BASE DE DONNEES
+// CONFIGURATION BASE DE DONNEES - RENDER
 // ============================================
 
-define('DB_HOST', 'localhost');
-define('DB_NAME', 'wonderly');
-define('DB_USER', 'root');
-define('DB_PASS', '');
+// Détection de l'environnement
+$isProduction = isset($_ENV['RENDER']) || isset($_SERVER['RENDER']);
+
+if ($isProduction) {
+    // Variables d'environnement Render
+    define('DB_HOST', getenv('DB_HOST') ?: 'localhost');
+    define('DB_NAME', getenv('DB_NAME') ?: 'wonderly');
+    define('DB_USER', getenv('DB_USER') ?: 'root');
+    define('DB_PASS', getenv('DB_PASS') ?: '');
+} else {
+    // Configuration locale (XAMPP)
+    define('DB_HOST', 'localhost');
+    define('DB_NAME', 'wonderly');
+    define('DB_USER', 'root');
+    define('DB_PASS', '');
+}
 
 try {
     $pdo = new PDO(
@@ -23,11 +35,7 @@ try {
     die("Erreur de connexion a la base de donnees : " . $e->getMessage());
 }
 
-// Démarrer la session si elle n'est pas déjà démarrée
 if (session_status() === PHP_SESSION_NONE) {
     session_start();
 }
-
-// Rendre $pdo disponible globalement
-global $pdo;
 ?>

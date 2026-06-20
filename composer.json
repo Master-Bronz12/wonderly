@@ -1,0 +1,14 @@
+{
+    "name": "wonderly/wonderly",
+    "description": "Agence de voyage Wonderly - Cote d'Ivoire",
+    "type": "project",
+    "license": "proprietary",
+    "authors": [
+        {
+            "name": "MASTER BRONZ DIGITAL"
+        }
+    ],
+    "require": {
+        "php": ">=7.4"
+    }
+}
